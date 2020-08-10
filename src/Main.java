@@ -4,19 +4,29 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Scanner in = new Scanner(System.in);
-        long n = in.nextInt();
-        System.out.print(n);
-        if (n > 0) {
-            while (n != 1) {
-                if (n % 2 == 0) {
-                    n = n / 2;
-                    System.out.print(" " + n);
-                } else {
-                    n = n * 3 + 1;
-                    System.out.print(" " + n);
-                }
-            }
+        long[] a = getScannerArray();
+        System.out.println(getMissingNo(a, a.length));
+    }
+
+
+    static long getMissingNo(long[] a, long n) {
+        long total;
+        total = (n + 1) * (n + 2) / 2;
+        for (int i = 0; i < n; i++) {
+            total -= a[i];
         }
+        return total;
+    }
+    static long[] getScannerArray() {
+        Scanner input = new Scanner(System.in);
+        long num = input.nextLong();
+        long[] numbers = new long[(int) (num - 1)];
+
+        for (int i = 0; i < num - 1; i++) {
+            numbers[i] = input.nextLong();
+        }
+
+        input.close();
+        return numbers;
     }
 }
